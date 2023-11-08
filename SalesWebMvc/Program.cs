@@ -14,6 +14,8 @@ namespace SalesWebMvc
                 options.UseMySql(builder.Configuration.GetConnectionString("SalesWebMvcContext"),
                 ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("SalesWebMvcContext")),
                 builder => builder.MigrationsAssembly("SalesWebMvc")));
+            builder.Services.AddScoped<SeedingService>();
+            
                 //options.UseSqlServer(builder.Configuration.GetConnectionString("SalesWebMvcContext") ?? throw new InvalidOperationException("Connection string 'SalesWebMvcContext' not found.")));
 
             // Add services to the container.
@@ -29,6 +31,9 @@ namespace SalesWebMvc
                 app.UseHsts();
             }
 
+
+            app.Services.CreateScope().ServiceProvider.GetRequiredService<SeedingService>().Seed();
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
