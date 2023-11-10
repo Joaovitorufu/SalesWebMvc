@@ -1,0 +1,12 @@
+[33m1cf42c1[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m SellerService and Basic FindAll
+[33md812ba5[m SellersController
+[33m1bcd53d[m Seeding Service
+[33maefe5a3[m Other entities and second migration
+[33m7ec30ce[m changing theme
+[33m8704bc1[m MySql adaptation and first migration
+[33m8796e52[m crud scaffolding
+[33m8e13a6b[m Delete Department Controller and Department View
+[33m2d54013[m Create README.md
+[33mc81b664[m First Model-Controller-View - department
+[33mea67124[m Project Created
+[33m480a83f[m Create .gitignore
