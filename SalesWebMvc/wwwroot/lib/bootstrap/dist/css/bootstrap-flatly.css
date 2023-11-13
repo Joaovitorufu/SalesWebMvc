@@ -5105,7 +5105,7 @@ textarea.form-control-lg {
   border-top-width: var(--bs-list-group-border-width);
 }
 
-.list-group-horizontal {
+.list-group-dlzontal {
   flex-direction: row;
 }
 .list-group-horizontal > .list-group-item:first-child:not(:last-child) {
