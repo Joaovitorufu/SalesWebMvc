@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.MySql;
 using SalesWebMvc.Data;
@@ -36,7 +38,17 @@ namespace SalesWebMvc
                 app.UseHsts();
             }
 
+            //metodo para setar a localização para os Estados Unidos
+            var enUS = new CultureInfo("en-US");
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(enUS),
+                SupportedCultures = new List<CultureInfo> { enUS},
+                SupportedUICultures = new List<CultureInfo> { enUS}
+            };
+            app.UseRequestLocalization(localizationOptions);
 
+            
             app.Services.CreateScope().ServiceProvider.GetRequiredService<SeedingService>().Seed();
             
             app.UseHttpsRedirection();
