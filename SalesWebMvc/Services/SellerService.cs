@@ -25,14 +25,21 @@ namespace SalesWebMvc.Services
         public async Task<Seller> FindByIdAsync(int id)
         {
             //expressão lambda faz um join entre as tabelas para trazer a informação desejada em department
-            return await _context.Seller.Include(obj => obj.Department).FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Seller.Include(obj => obj.Department).FirstOrDefaultAsync(obj => obj.Id == id);
         }
 
         public async Task RemoveAsync(int id)
         {
-            var obj = _context.Seller.Find(id);
-            _context.Seller.Remove(obj);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var obj = await _context.Seller.FindAsync(id);
+                _context.Seller.Remove(obj);
+                await _context.SaveChangesAsync();
+            }catch(DbUpdateException e)
+            {
+                throw new IntegrityException(e.Message);
+            }
+            
         }
 
         public async Task UpdateAsync(Seller obj)
